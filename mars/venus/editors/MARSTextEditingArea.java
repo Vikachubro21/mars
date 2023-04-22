@@ -1,89 +1,95 @@
-   package mars.venus.editors;
-   import javax.swing.text.*;
-   import javax.swing.undo.*;
-   import javax.swing.*;
-   import java.awt.*;
+package mars.venus.editors;
 
-/*
-Copyright (c) 2003-2010,  Pete Sanderson and Kenneth Vollmar
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import javax.swing.text.Document;
+import javax.swing.undo.UndoManager;
 
-Developed by Pete Sanderson (psanderson@otterbein.edu)
-and Kenneth Vollmar (kenvollmar@missouristate.edu)
+public interface MARSTextEditingArea {
+   int TEXT_NOT_FOUND = 0;
+   int TEXT_FOUND = 1;
+   int TEXT_REPLACED_FOUND_NEXT = 2;
+   int TEXT_REPLACED_NOT_FOUND_NEXT = 3;
 
-Permission is hereby granted, free of charge, to any person obtaining 
-a copy of this software and associated documentation files (the 
-"Software"), to deal in the Software without restriction, including 
-without limitation the rights to use, copy, modify, merge, publish, 
-distribute, sublicense, and/or sell copies of the Software, and to 
-permit persons to whom the Software is furnished to do so, subject 
-to the following conditions:
+   void copy();
 
-The above copyright notice and this permission notice shall be 
-included in all copies or substantial portions of the Software.
+   void cut();
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR 
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
-CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+   int doFindText(String var1, boolean var2);
 
-(MIT license, http://www.opensource.org/licenses/mit-license.html)
- */
+   int doReplace(String var1, String var2, boolean var3);
 
-/**
- *  Specifies capabilities that any test editor used in MARS must have.
- *
- */
- 
-    public interface MARSTextEditingArea {
-   
-	   // Used by Find/Replace 
-      public static final int TEXT_NOT_FOUND = 0;
-      public static final int TEXT_FOUND = 1;
-      public static final int TEXT_REPLACED_FOUND_NEXT = 2;
-      public static final int TEXT_REPLACED_NOT_FOUND_NEXT = 3;
-   
-   
-       public void copy();
-       public void cut();
-       public int doFindText(String find, boolean caseSensitive);
-       public int doReplace(String find, String replace, boolean caseSensitive); 
-       public int doReplaceAll(String find, String replace, boolean caseSensitive);		 
-       public int getCaretPosition();
-       public Document getDocument();
-       public String getSelectedText();
-       public int getSelectionEnd();
-       public int getSelectionStart();
-		 public void select(int selectionStart, int selectionEnd);
-		 public void selectAll();
-       public String getText();
-       public UndoManager getUndoManager();
-       public void paste();
-       public void replaceSelection(String str);
-       public void setCaretPosition(int position);
-       public void setEditable(boolean editable);
-       public void setSelectionEnd(int pos);
-       public void setSelectionStart(int pos);
-       public void setText(String text);
-       public void setFont(Font f);
-       public Font getFont();
-       public boolean requestFocusInWindow();
-       public FontMetrics getFontMetrics(Font f);
-       public void setBackground(Color c);
-       public void setEnabled(boolean enabled);
-       public void grabFocus();
-       public void redo();
-       public void revalidate();
-       public void setSourceCode(String code, boolean editable);
-       public void setCaretVisible(boolean vis);
-       public void setSelectionVisible(boolean vis);
-       public void undo();
-       public void discardAllUndoableEdits();
-		 public void setLineHighlightEnabled(boolean highlight);
-		 public void setCaretBlinkRate(int rate);
-		 public void setTabSize(int chars);
-		 public void updateSyntaxStyles();
-       public Component getOuterComponent();
-   }
+   int doReplaceAll(String var1, String var2, boolean var3);
+
+   int getCaretPosition();
+
+   Document getDocument();
+
+   String getSelectedText();
+
+   int getSelectionEnd();
+
+   int getSelectionStart();
+
+   void select(int var1, int var2);
+
+   void selectAll();
+
+   String getText();
+
+   UndoManager getUndoManager();
+
+   void paste();
+
+   void replaceSelection(String var1);
+
+   void setCaretPosition(int var1);
+
+   void setEditable(boolean var1);
+
+   void setSelectionEnd(int var1);
+
+   void setSelectionStart(int var1);
+
+   void setText(String var1);
+
+   void setFont(Font var1);
+
+   Font getFont();
+
+   boolean requestFocusInWindow();
+
+   FontMetrics getFontMetrics(Font var1);
+
+   void setBackground(Color var1);
+
+   void setEnabled(boolean var1);
+
+   void grabFocus();
+
+   void redo();
+
+   void revalidate();
+
+   void setSourceCode(String var1, boolean var2);
+
+   void setCaretVisible(boolean var1);
+
+   void setSelectionVisible(boolean var1);
+
+   void undo();
+
+   void discardAllUndoableEdits();
+
+   void setLineHighlightEnabled(boolean var1);
+
+   void setCaretBlinkRate(int var1);
+
+   void setTabSize(int var1);
+
+   void updateSyntaxStyles();
+
+   Component getOuterComponent();
+}
